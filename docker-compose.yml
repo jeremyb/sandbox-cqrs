@@ -1,0 +1,26 @@
+version: '3.2'
+
+services:
+  php:
+    build: .
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+    volumes:
+      - ./:/usr/src/app:rw,cached
+      - ./var:/usr/src/app/var:rw
+
+  db:
+    image: postgres:9.6-alpine
+    environment:
+      - POSTGRES_DB=sandbox-cqrs
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data:rw
+    ports:
+      - "5432:5432"
+
+volumes:
+  db-data: {}

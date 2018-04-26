@@ -1,0 +1,3 @@
+doctrine_migrations:
+    dir_name: '%kernel.project_dir%/src/Infrastructure/Persistence/Migrations'
+    namespace: SandboxCQRS\Infrastructure\Persistence\Migrations

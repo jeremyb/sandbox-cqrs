@@ -1,0 +1,14 @@
+{
+    "name": "app/message-bus",
+    "version": "dev-master",
+    "type": "library",
+    "description": "Library to manage message bus",
+    "autoload": {
+        "psr-4": {
+            "MessageBus\\": "src/"
+        }
+    },
+    "require": {
+        "psr/container": "^1.0"
+    }
+}
