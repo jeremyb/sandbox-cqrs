@@ -8,6 +8,11 @@
             "MessageBus\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "MessageBus\\Tests\\": "tests/"
+        }
+    },
     "require": {
         "psr/container": "^1.0"
     }
