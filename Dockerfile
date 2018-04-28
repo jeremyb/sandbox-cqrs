@@ -31,16 +31,16 @@ ARG SYMFONY_SKIP_REGISTRATION=1
 ARG APP_ENV=dev
 
 # Prevent the reinstallation of vendors at every changes in the source code
-COPY composer.json composer.lock ./
-RUN composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress --no-suggest \
-	&& composer clear-cache
-
 COPY . ./
+RUN composer install --prefer-dist --no-autoloader --no-scripts --no-progress --no-suggest \
+	&& composer clear-cache
 
 RUN mkdir -p var/cache var/log var/sessions \
 	&& composer dump-autoload --classmap-authoritative --no-dev \
 	&& composer run-script --no-dev post-install-cmd \
 	&& chmod +x bin/console && sync
+
 VOLUME /usr/src/app/var
+VOLUME /usr/src/app/vendor
 
 CMD ["php"]
