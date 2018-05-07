@@ -10,6 +10,7 @@ services:
     volumes:
       - ./:/usr/src/app:rw,cached
       - ./var:/usr/src/app/var:rw
+      - ./vendor:/usr/src/app/vendor:rw
 
   db:
     image: postgres:9.6-alpine

@@ -10,12 +10,13 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Messenger\MessageBus;
 
 final class CreateBookmarkCommand extends Command
 {
     private $commandBus;
 
-    public function __construct(CommandBus $commandBus)
+    public function __construct(MessageBus $commandBus)
     {
         parent::__construct();
 
@@ -34,7 +35,7 @@ final class CreateBookmarkCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output) : void
     {
         $output->writeln('<info>Creating a new bookmark from URL</info>');
-        $this->commandBus->handle(new CreateBookmark($input->getArgument('url')));
+        $this->commandBus->dispatch(new CreateBookmark($input->getArgument('url')));
         $output->writeln('<info>New bookmark added</info>');
     }
 }

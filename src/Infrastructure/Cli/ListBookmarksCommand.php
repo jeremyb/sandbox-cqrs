@@ -11,12 +11,13 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Messenger\MessageBus;
 
 final class ListBookmarksCommand extends Command
 {
     private $queryBus;
 
-    public function __construct(QueryBus $queryBus)
+    public function __construct(MessageBus $queryBus)
     {
         parent::__construct();
 
@@ -37,7 +38,7 @@ final class ListBookmarksCommand extends Command
 
         $rows = [];
         /** @var Bookmark $bookmark */
-        foreach ($this->queryBus->handle(new ListBookmarks()) as $bookmark) {
+        foreach ($this->queryBus->dispatch(new ListBookmarks()) as $bookmark) {
             $rows[] = [
                 $bookmark->id(),
                 $bookmark->url(),

@@ -248,9 +248,6 @@
     "symfony/intl": {
         "version": "v4.0.8"
     },
-    "symfony/lts": {
-        "version": "4-dev"
-    },
     "symfony/maker-bundle": {
         "version": "1.0",
         "recipe": {
@@ -259,6 +256,9 @@
             "version": "1.0",
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
+    },
+    "symfony/messenger": {
+        "version": "4.1-dev"
     },
     "symfony/monolog-bridge": {
         "version": "v4.0.8"

@@ -25,6 +25,18 @@ services:
 
     Goose\Client: ~
 
+    Symfony\Component\Messenger\MessageBus:
+        arguments:
+            -
+                - '@Symfony\Component\Messenger\Middleware\HandleMessageMiddleware'
+    Symfony\Component\Messenger\Handler\Locator\HandlerLocator:
+        arguments:
+            -
+                SandboxCQRS\Application\Command\CreateBookmark: '@SandboxCQRS\Application\Command\CreateBookmarkHandler'
+                SandboxCQRS\Application\Query\ListBookmarks: '@SandboxCQRS\Application\Query\ListBookmarksHandler'
+    Symfony\Component\Messenger\Middleware\HandleMessageMiddleware:
+        arguments: ['@Symfony\Component\Messenger\Handler\Locator\HandlerLocator']
+
     app.command_bus_service_locator:
         class: Symfony\Component\DependencyInjection\ServiceLocator
         tags: ['container.service_locator']
